@@ -1,5 +1,7 @@
 package com.wsdev.simpleos.model;
 
+import jakarta.persistence.Embeddable;
+
 @Embeddable
 public class Address
 {
@@ -9,7 +11,7 @@ public class Address
     private String country;
     private String zipcode;
 
-    public Address( String street )
+    public Address()
     {
 
     }

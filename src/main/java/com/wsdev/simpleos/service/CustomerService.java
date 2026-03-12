@@ -30,7 +30,7 @@ public class CustomerService
 
     public CustomerDTO getCustomerByName( String name )
     {
-        Customer customer = customerRepository.getCustomerByName( name );
+        Customer customer = customerRepository.getCustomerByFirstName( name );
 
         return CustomerMapper.entityToDto( customer );
     }
@@ -61,6 +61,8 @@ public class CustomerService
 
     public void deleteCustomer( Long id )
     {
-        customerRepository.deleteById( id );
+        Customer customer = customerRepository.findById( id ).orElseThrow( () -> new IllegalArgumentException( "Customer with id " + id + " not found!" ) );
+
+        customerRepository.delete( customer );
     }
 }

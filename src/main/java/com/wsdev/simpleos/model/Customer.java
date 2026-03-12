@@ -16,6 +16,19 @@ public class Customer
     private Address address;
     private String phone;
 
+    public Customer( Long id, String firstName, String lastName, Address address, String phone )
+    {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    public Customer()
+    {
+
+    }
 
     public Long getId()
     {
