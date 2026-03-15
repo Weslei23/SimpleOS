@@ -1,33 +1,35 @@
 package com.wsdev.simpleos.dto.mappers;
 
 import com.wsdev.simpleos.dto.CustomerDTO;
-import com.wsdev.simpleos.model.Customer;
+import com.wsdev.simpleos.model.CustomerModel;
 
 public class CustomerMapper
 {
-    public static CustomerDTO entityToDto( Customer customer )
+    public static CustomerDTO entityToDto( CustomerModel customerModel )
     {
         CustomerDTO customerDTO = new CustomerDTO();
 
-        customerDTO.setId( customer.getId() );
-        customerDTO.setFirstName( customer.getFirstName() );
-        customerDTO.setLastName( customer.getLastName() );
-        customerDTO.setAddress( customer.getAddress() );
-        customerDTO.setPhone( customer.getPhone() );
+        customerDTO.setId( customerModel.getId() );
+        customerDTO.setFirstName( customerModel.getFirstName() );
+        customerDTO.setLastName( customerModel.getLastName() );
+        customerDTO.setAddress( customerModel.getAddress() );
+        customerDTO.setPhone( customerModel.getPhone() );
+        customerDTO.setOrders( customerModel.getOrders() );
 
         return customerDTO;
     }
 
-    public static Customer DtoToEntity( CustomerDTO customerDTO )
+    public static CustomerModel dtoToEntity( CustomerDTO customerDTO )
     {
-        Customer customer = new Customer();
+        CustomerModel customerModel = new CustomerModel();
 
-        customer.setId( customerDTO.getId() );
-        customer.setFirstName( customerDTO.getFirstName() );
-        customer.setLastName( customerDTO.getLastName() );
-        customer.setAddress( customerDTO.getAddress() );
-        customer.setPhone( customerDTO.getPhone() );
+        customerModel.setId( customerDTO.getId() );
+        customerModel.setFirstName( customerDTO.getFirstName() );
+        customerModel.setLastName( customerDTO.getLastName() );
+        customerModel.setAddress( customerDTO.getAddress() );
+        customerModel.setPhone( customerDTO.getPhone() );
+        customerModel.setOrders( customerDTO.getOrders() );
 
-        return customer;
+        return customerModel;
     }
 }

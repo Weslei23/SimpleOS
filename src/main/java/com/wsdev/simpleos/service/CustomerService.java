@@ -2,7 +2,7 @@ package com.wsdev.simpleos.service;
 
 import com.wsdev.simpleos.dto.CustomerDTO;
 import com.wsdev.simpleos.dto.mappers.CustomerMapper;
-import com.wsdev.simpleos.model.Customer;
+import com.wsdev.simpleos.model.CustomerModel;
 import com.wsdev.simpleos.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,46 +23,40 @@ public class CustomerService
 
     public CustomerDTO getCustomerById( long id )
     {
-        Customer customer = customerRepository.findById( id ).orElseThrow( () -> new IllegalArgumentException( "Customer with id " + id + " not found!" ) );
+        CustomerModel customerModel = customerRepository.findById( id ).orElseThrow( () -> new IllegalArgumentException( "Customer with id " + id + " not found!" ) );
 
-        return CustomerMapper.entityToDto( customer );
+        return CustomerMapper.entityToDto(customerModel);
     }
 
     public CustomerDTO getCustomerByName( String name )
     {
-        Customer customer = customerRepository.getCustomerByFirstName( name );
+        CustomerModel customerModel = customerRepository.getCustomerByFirstName( name );
 
-        return CustomerMapper.entityToDto( customer );
+        return CustomerMapper.entityToDto(customerModel);
     }
 
     public void addCustomer( CustomerDTO customerDTO )
     {
-        Customer customer = new Customer();
-
-        customer.setFirstName( customerDTO.getFirstName() );
-        customer.setLastName( customerDTO.getLastName() );
-        customer.setAddress( customerDTO.getAddress() );
-        customer.setPhone( customerDTO.getPhone() );
-
-        customerRepository.save( customer );
+        customerRepository.save( CustomerMapper.dtoToEntity( customerDTO ) );
     }
 
     public void updateCustomer( Long id, CustomerDTO customerDTO )
     {
-        Customer customer = customerRepository.findById( id ).orElseThrow( () -> new IllegalArgumentException( "Customer with id " + id + " not found!" ) );
+        CustomerModel customerModel = customerRepository.findById( id ).orElseThrow( () -> new IllegalArgumentException( "Customer with id " + id + " not found!" ) );
 
-        customer.setFirstName( customerDTO.getFirstName() );
-        customer.setLastName( customerDTO.getLastName() );
-        customer.setAddress( customerDTO.getAddress() );
-        customer.setPhone( customerDTO.getPhone() );
+        customerModel.setFirstName( customerDTO.getFirstName() );
+        customerModel.setLastName( customerDTO.getLastName() );
+        customerModel.setAddress( customerDTO.getAddress() );
+        customerModel.setPhone( customerDTO.getPhone() );
+        customerModel.setOrders( customerDTO.getOrders() );
 
-        customerRepository.save( customer );
+        customerRepository.save(customerModel);
     }
 
     public void deleteCustomer( Long id )
     {
-        Customer customer = customerRepository.findById( id ).orElseThrow( () -> new IllegalArgumentException( "Customer with id " + id + " not found!" ) );
+        CustomerModel customerModel = customerRepository.findById( id ).orElseThrow( () -> new IllegalArgumentException( "Customer with id " + id + " not found!" ) );
 
-        customerRepository.delete( customer );
+        customerRepository.delete(customerModel);
     }
 }

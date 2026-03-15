@@ -2,9 +2,11 @@ package com.wsdev.simpleos.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table( name = "tb_customer" )
-public class Customer
+@Table( name = "tb_customers" )
+public class CustomerModel
 {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -16,7 +18,10 @@ public class Customer
     private Address address;
     private String phone;
 
-    public Customer( Long id, String firstName, String lastName, Address address, String phone )
+    @OneToMany( mappedBy = "customer" )
+    private List<OrderModel> orders;
+
+    public CustomerModel( Long id, String firstName, String lastName, Address address, String phone )
     {
         this.id = id;
         this.firstName = firstName;
@@ -25,7 +30,7 @@ public class Customer
         this.phone = phone;
     }
 
-    public Customer()
+    public CustomerModel()
     {
 
     }
@@ -78,5 +83,15 @@ public class Customer
     public void setLastName( String lastName )
     {
         this.lastName = lastName;
+    }
+
+    public List<OrderModel> getOrders()
+    {
+        return orders;
+    }
+
+    public void setOrders( List<OrderModel> orders )
+    {
+        this.orders = orders;
     }
 }

@@ -1,9 +1,9 @@
 package com.wsdev.simpleos.repository;
 
-import com.wsdev.simpleos.model.Customer;
+import com.wsdev.simpleos.model.CustomerModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CustomerRepository extends JpaRepository<Customer, Long>
+public interface CustomerRepository extends JpaRepository<CustomerModel, Long>
 {
-    Customer getCustomerByFirstName( String firstName );
+    CustomerModel getCustomerByFirstName( String firstName );
 }

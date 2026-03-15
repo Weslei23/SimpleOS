@@ -26,13 +26,13 @@ public class CustomerController
         return customerService.getCustomerById( id );
     }
 
-    @PostMapping( "/addCustomer" )
+    @PostMapping( "/add" )
     public void addCustomer( @RequestBody CustomerDTO customerDTO )
     {
         customerService.addCustomer( customerDTO );
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping(  "/update/{id}" )
     public void updateCustomer( Long id, CustomerDTO customerDTO )
     {
         customerService.updateCustomer( id, customerDTO );
