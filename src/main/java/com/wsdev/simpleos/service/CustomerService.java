@@ -2,6 +2,7 @@ package com.wsdev.simpleos.service;
 
 import com.wsdev.simpleos.dto.CustomerDTO;
 import com.wsdev.simpleos.dto.mappers.CustomerMapper;
+import com.wsdev.simpleos.exception.RecordNotFoundException;
 import com.wsdev.simpleos.model.CustomerModel;
 import com.wsdev.simpleos.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class CustomerService
 
     public CustomerDTO getCustomerById( long id )
     {
-        CustomerModel customerModel = customerRepository.findById( id ).orElseThrow( () -> new IllegalArgumentException( "Customer with id " + id + " not found!" ) );
+        CustomerModel customerModel = customerRepository.findById( id ).orElseThrow( () -> new RecordNotFoundException( id ) );
 
         return CustomerMapper.entityToDto(customerModel);
     }
@@ -47,7 +48,7 @@ public class CustomerService
 
     public void updateCustomer( Long id, CustomerDTO customerDTO )
     {
-        CustomerModel customerModel = customerRepository.findById( id ).orElseThrow( () -> new IllegalArgumentException( "Customer with id " + id + " not found!" ) );
+        CustomerModel customerModel = customerRepository.findById( id ).orElseThrow( () -> new RecordNotFoundException( id ) );
 
         customerModel.setFirstName( customerDTO.getFirstName() );
         customerModel.setLastName( customerDTO.getLastName() );
@@ -59,8 +60,8 @@ public class CustomerService
 
     public void deleteCustomer( Long id )
     {
-        CustomerModel customerModel = customerRepository.findById( id ).orElseThrow( () -> new IllegalArgumentException( "Customer with id " + id + " not found!" ) );
+        CustomerModel customerModel = customerRepository.findById( id ).orElseThrow( () -> new RecordNotFoundException( id ) );
 
-        customerRepository.delete(customerModel);
+        customerRepository.delete( customerModel );
     }
 }

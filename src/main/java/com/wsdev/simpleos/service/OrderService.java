@@ -4,6 +4,7 @@ import com.wsdev.simpleos.dto.OrderDTO;
 import com.wsdev.simpleos.dto.mappers.CustomerMapper;
 import com.wsdev.simpleos.dto.mappers.EmployeeMapper;
 import com.wsdev.simpleos.dto.mappers.OrderMapper;
+import com.wsdev.simpleos.exception.RecordNotFoundException;
 import com.wsdev.simpleos.model.EmployeeModel;
 import com.wsdev.simpleos.model.OrderModel;
 import com.wsdev.simpleos.repository.EmployeeRepository;
@@ -34,7 +35,7 @@ public class OrderService
 
     public OrderDTO getOrderById( Long id )
     {
-        OrderModel orderModel = orderRepository.findById( id ).orElseThrow( () -> new RuntimeException( "Order with id: " + id + " not found." ) );
+        OrderModel orderModel = orderRepository.findById( id ).orElseThrow( () -> new RecordNotFoundException( id ) );
 
         return OrderMapper.entityToDto( orderModel );
     }
@@ -59,7 +60,7 @@ public class OrderService
 
     public void updateOrder( Long id, OrderDTO orderDTO )
     {
-        OrderModel orderModel = orderRepository.findById( id ).orElseThrow( () -> new RuntimeException( "Order with id: " + id + " not found." ) );
+        OrderModel orderModel = orderRepository.findById( id ).orElseThrow( () -> new RecordNotFoundException( id ) );
 
         orderModel.setDescription( orderDTO.getDescription() );
         orderModel.setCustomer( CustomerMapper.dtoToEntity( orderDTO.getCustomer() ) );
@@ -73,7 +74,7 @@ public class OrderService
 
     public void deleteOrder( Long id )
     {
-        OrderModel orderModel = orderRepository.findById( id ).orElseThrow( () -> new RuntimeException( "Order with id: " + id + " not found." ) );
+        OrderModel orderModel = orderRepository.findById( id ).orElseThrow( () -> new RecordNotFoundException( id ) );
 
         orderRepository.delete( orderModel );
     }

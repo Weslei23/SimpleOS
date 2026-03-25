@@ -2,11 +2,11 @@ package com.wsdev.simpleos.service;
 
 import com.wsdev.simpleos.dto.EmployeeDTO;
 import com.wsdev.simpleos.dto.mappers.EmployeeMapper;
+import com.wsdev.simpleos.exception.RecordNotFoundException;
 import com.wsdev.simpleos.model.EmployeeModel;
 import com.wsdev.simpleos.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class EmployeeService
 
     public EmployeeDTO getEmployeeById( Long id )
     {
-        EmployeeModel employeeModel = employeeRepository.findById( id ).orElseThrow(  () ->  new RuntimeException( "Employee with id: " + id + " not found." ) );
+        EmployeeModel employeeModel = employeeRepository.findById( id ).orElseThrow( () -> new RecordNotFoundException( id ) );
         return EmployeeMapper.entityToDto( employeeModel );
     }
 
@@ -47,7 +47,7 @@ public class EmployeeService
 
     public void updateEmployee( Long id, EmployeeDTO employeeDTO )
     {
-        EmployeeModel employeeModel = employeeRepository.findById( id ).orElseThrow(  () ->  new RuntimeException( "Employee with id: " + id + " not found." ) );
+        EmployeeModel employeeModel = employeeRepository.findById( id ).orElseThrow( () -> new RecordNotFoundException( id ) );
 
         employeeModel.setName( employeeDTO.getName() );
         employeeModel.setPhone( employeeDTO.getPhone() );
@@ -58,7 +58,7 @@ public class EmployeeService
 
     public void deleteEmployee( Long id )
     {
-        EmployeeModel employeeModel = employeeRepository.findById( id ).orElseThrow(  () ->  new RuntimeException( "Employee with id: " + id + " not found." ) );
+        EmployeeModel employeeModel = employeeRepository.findById( id ).orElseThrow( () -> new RecordNotFoundException( id ) );
         employeeRepository.delete( employeeModel );
     }
 }
