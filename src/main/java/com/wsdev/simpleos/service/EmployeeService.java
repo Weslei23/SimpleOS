@@ -16,6 +16,11 @@ public class EmployeeService
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    public EmployeeService( EmployeeRepository employeeRepository )
+    {
+        this.employeeRepository = employeeRepository;
+    }
+
     public List<EmployeeDTO> getEmployees()
     {
         return employeeRepository.findAll().stream()
@@ -47,7 +52,6 @@ public class EmployeeService
         employeeModel.setName( employeeDTO.getName() );
         employeeModel.setPhone( employeeDTO.getPhone() );
         employeeModel.setFunction( employeeDTO.getFunction() );
-        employeeModel.setOrders( employeeDTO.getOrder() );
 
         employeeRepository.save( employeeModel );
     }

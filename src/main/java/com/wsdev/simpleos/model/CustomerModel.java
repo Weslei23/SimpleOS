@@ -18,7 +18,7 @@ public class CustomerModel
     private Address address;
     private String phone;
 
-    @OneToMany( mappedBy = "customer" )
+    @OneToMany( mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true ) // Ira mapear por employee na classe Order e caso um registro seja apagadso ele ira deletar nas outras classes.
     private List<OrderModel> orders;
 
     public CustomerModel( Long id, String firstName, String lastName, Address address, String phone )

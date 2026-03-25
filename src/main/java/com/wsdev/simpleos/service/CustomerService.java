@@ -15,6 +15,11 @@ public class CustomerService
     @Autowired
     private CustomerRepository customerRepository;
 
+    public CustomerService( CustomerRepository customerRepository )
+    {
+        this.customerRepository = customerRepository;
+    }
+
     public List<CustomerDTO> getCustomers()
     {
         return customerRepository.findAll().stream()
@@ -48,9 +53,8 @@ public class CustomerService
         customerModel.setLastName( customerDTO.getLastName() );
         customerModel.setAddress( customerDTO.getAddress() );
         customerModel.setPhone( customerDTO.getPhone() );
-        customerModel.setOrders( customerDTO.getOrders() );
 
-        customerRepository.save(customerModel);
+        customerRepository.save( customerModel );
     }
 
     public void deleteCustomer( Long id )

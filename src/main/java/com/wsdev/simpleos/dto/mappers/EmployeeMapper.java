@@ -12,7 +12,6 @@ public class EmployeeMapper
         employeeDTO.setId( employeeModel.getId() );
         employeeDTO.setName( employeeModel.getName() );
         employeeDTO.setPhone( employeeModel.getPhone() );
-        employeeDTO.setOrders( employeeModel.getOrders() );
         employeeDTO.setFunction( employeeModel.getFunction() );
 
         return employeeDTO;
@@ -25,7 +24,6 @@ public class EmployeeMapper
         employeeModel.setId( employeeDTO.getId() );
         employeeModel.setName( employeeDTO.getName() );
         employeeModel.setPhone( employeeDTO.getPhone() );
-        employeeModel.setOrders( employeeDTO.getOrder() );
         employeeModel.setFunction( employeeDTO.getFunction() );
 
         return employeeModel;

@@ -1,7 +1,5 @@
 package com.wsdev.simpleos.dto;
 
-import com.wsdev.simpleos.model.CustomerModel;
-import com.wsdev.simpleos.model.EmployeeModel;
 import com.wsdev.simpleos.model.OrderStatus;
 
 import java.time.LocalDate;
@@ -13,8 +11,8 @@ public class OrderDTO
     private String description;
     private LocalDate executedDate;
     private OrderStatus status;
-    private CustomerModel customer;
-    private EmployeeModel employee;
+    private CustomerDTO customer;
+    private EmployeeDTO employee;
     private LocalDateTime createdAt;
 
     public Long getId()
@@ -57,22 +55,22 @@ public class OrderDTO
         this.status = status;
     }
 
-    public CustomerModel getCustomer()
+    public CustomerDTO getCustomer()
     {
         return customer;
     }
 
-    public void setCustomer( CustomerModel customer )
+    public void setCustomer( CustomerDTO customer )
     {
         this.customer = customer;
     }
 
-    public EmployeeModel getEmployee()
+    public EmployeeDTO getEmployee()
     {
         return employee;
     }
 
-    public void setEmployee( EmployeeModel employee )
+    public void setEmployee( EmployeeDTO employee )
     {
         this.employee = employee;
     }

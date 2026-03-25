@@ -1,9 +1,6 @@
 package com.wsdev.simpleos.dto;
 
 import com.wsdev.simpleos.model.Address;
-import com.wsdev.simpleos.model.OrderModel;
-
-import java.util.List;
 
 public class CustomerDTO
 {
@@ -12,7 +9,6 @@ public class CustomerDTO
     private String lastName;
     private Address address;
     private String phone;
-    private List<OrderModel> orders;
 
     public Long getId()
     {
@@ -62,15 +58,5 @@ public class CustomerDTO
     public void setPhone( String phone )
     {
         this.phone = phone;
-    }
-
-    public List<OrderModel> getOrders()
-    {
-        return orders;
-    }
-
-    public void setOrders( List<OrderModel> orders )
-    {
-        this.orders = orders;
     }
 }

@@ -15,7 +15,7 @@ public class EmployeeModel
     private String phone;
     private String function;
 
-    @OneToMany( mappedBy = "employee" )
+    @OneToMany( mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true ) // Ira mapear por employee na classe Order e caso um registro seja apagadso ele ira deletar nas outras classes.
     private List<OrderModel> orders;
 
     public EmployeeModel()

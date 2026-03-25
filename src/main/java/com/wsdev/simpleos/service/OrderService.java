@@ -1,6 +1,8 @@
 package com.wsdev.simpleos.service;
 
 import com.wsdev.simpleos.dto.OrderDTO;
+import com.wsdev.simpleos.dto.mappers.CustomerMapper;
+import com.wsdev.simpleos.dto.mappers.EmployeeMapper;
 import com.wsdev.simpleos.dto.mappers.OrderMapper;
 import com.wsdev.simpleos.model.EmployeeModel;
 import com.wsdev.simpleos.model.OrderModel;
@@ -17,6 +19,12 @@ public class OrderService
     @Autowired
     private OrderRepository orderRepository;
     private EmployeeRepository employeeRepository;
+
+    public OrderService( OrderRepository orderRepository, EmployeeRepository employeeRepository )
+    {
+        this.orderRepository = orderRepository;
+        this.employeeRepository = employeeRepository;
+    }
 
     public List<OrderDTO> getOrders()
     {
@@ -54,8 +62,8 @@ public class OrderService
         OrderModel orderModel = orderRepository.findById( id ).orElseThrow( () -> new RuntimeException( "Order with id: " + id + " not found." ) );
 
         orderModel.setDescription( orderDTO.getDescription() );
-        orderModel.setCustomer( orderDTO.getCustomer() );
-        orderModel.setEmployee( orderDTO.getEmployee() );
+        orderModel.setCustomer( CustomerMapper.dtoToEntity( orderDTO.getCustomer() ) );
+        orderModel.setEmployee( EmployeeMapper.dtoToEntity( orderDTO.getEmployee() ) );
         orderModel.setStatus( orderDTO.getStatus() );
         orderModel.setCreatedAt( orderDTO.getCreatedAt() );
         orderModel.setExecutedDate( orderDTO.getExecutedDate() );

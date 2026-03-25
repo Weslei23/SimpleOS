@@ -1,5 +1,6 @@
 package com.wsdev.simpleos.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -18,11 +19,11 @@ public class OrderModel
     private OrderStatus status;
 
     @ManyToOne
-    @JoinColumn( name = "customerId" )
+    @JoinColumn( name = "customer_id", nullable = false )
     private CustomerModel customer;
 
     @ManyToOne
-    @JoinColumn( name = "employeeId" )
+    @JoinColumn( name = "employee_id", nullable = false )
     private EmployeeModel employee;
 
     @CreationTimestamp
@@ -39,7 +40,6 @@ public class OrderModel
         this.executedDate = executedDate;
         this.status = status;
         this.createdAt = createdAt;
-        this.executedDate = executedDate;
     }
 
     public Long getId()
