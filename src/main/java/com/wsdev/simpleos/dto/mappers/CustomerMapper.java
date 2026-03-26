@@ -14,6 +14,8 @@ public class CustomerMapper
         customerDTO.setLastName( customerModel.getLastName() );
         customerDTO.setAddress( customerModel.getAddress() );
         customerDTO.setPhone( customerModel.getPhone() );
+        customerDTO.setEmail( customerModel.getEmail() );
+        customerDTO.setCpf( customerModel.getCpf() );
 
         return customerDTO;
     }
@@ -27,6 +29,8 @@ public class CustomerMapper
         customerModel.setLastName( customerDTO.getLastName() );
         customerModel.setAddress( customerDTO.getAddress() );
         customerModel.setPhone( customerDTO.getPhone() );
+        customerModel.setEmail( customerDTO.getEmail() );
+        customerModel.setCpf( customerDTO.getCpf() );
 
         return customerModel;
     }

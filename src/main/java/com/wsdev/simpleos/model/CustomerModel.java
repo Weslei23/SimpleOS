@@ -2,6 +2,7 @@ package com.wsdev.simpleos.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,15 +20,23 @@ public class CustomerModel
     private String phone;
 
     @OneToMany( mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true ) // Ira mapear por employee na classe Order e caso um registro seja apagadso ele ira deletar nas outras classes.
-    private List<OrderModel> orders;
+    private List<OrderModel> orders = new ArrayList<>();
 
-    public CustomerModel( Long id, String firstName, String lastName, Address address, String phone )
+    @Column( unique = true )
+    private String email;
+
+    @Column( unique = true )
+    private String cpf;
+
+    public CustomerModel( Long id, String firstName, String lastName, Address address, String phone, String email, String cpf )
     {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phone = phone;
+        this.email = email;
+        this.cpf = cpf;
     }
 
     public CustomerModel()
@@ -93,5 +102,25 @@ public class CustomerModel
     public void setOrders( List<OrderModel> orders )
     {
         this.orders = orders;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail( String email )
+    {
+        this.email = email;
+    }
+
+    public String getCpf()
+    {
+        return cpf;
+    }
+
+    public void setCpf( String cpf )
+    {
+        this.cpf = cpf;
     }
 }

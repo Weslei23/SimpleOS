@@ -3,6 +3,7 @@ package com.wsdev.simpleos.controller;
 import com.wsdev.simpleos.dto.EmployeeDTO;
 import com.wsdev.simpleos.service.EmployeeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -40,14 +41,14 @@ public class EmployeeController
 
     @PostMapping( "/add" )
     @ResponseStatus( HttpStatus.CREATED )
-    public void addEmployee( @RequestBody EmployeeDTO employeeDTO )
+    public void addEmployee( @Valid @RequestBody EmployeeDTO employeeDTO )
     {
         employeeService.addEmployee( employeeDTO );
     }
 
     @PutMapping( "/update/{id}" )
     @ResponseStatus( HttpStatus.NO_CONTENT )
-    public void updateEmployee( @PathVariable Long id, @RequestBody EmployeeDTO employeeDTO )
+    public void updateEmployee( @Valid @PathVariable Long id, @RequestBody EmployeeDTO employeeDTO )
     {
         employeeService.updateEmployee( id, employeeDTO );
     }

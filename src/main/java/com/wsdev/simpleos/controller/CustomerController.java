@@ -3,6 +3,7 @@ package com.wsdev.simpleos.controller;
 import com.wsdev.simpleos.dto.CustomerDTO;
 import com.wsdev.simpleos.service.CustomerService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -33,14 +34,14 @@ public class CustomerController
 
     @PostMapping( "/add" )
     @ResponseStatus( HttpStatus.CREATED )
-    public void addCustomer( @RequestBody CustomerDTO customerDTO )
+    public void addCustomer( @Valid @RequestBody CustomerDTO customerDTO )
     {
         customerService.addCustomer( customerDTO );
     }
 
     @PutMapping(  "/update/{id}" )
     @ResponseStatus( HttpStatus.NO_CONTENT )
-    public void updateCustomer( @PathVariable Long id, @RequestBody CustomerDTO customerDTO )
+    public void updateCustomer( @Valid @PathVariable Long id, @RequestBody CustomerDTO customerDTO )
     {
         customerService.updateCustomer( id, customerDTO );
     }

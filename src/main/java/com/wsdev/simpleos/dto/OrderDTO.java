@@ -1,6 +1,8 @@
 package com.wsdev.simpleos.dto;
 
 import com.wsdev.simpleos.model.OrderStatus;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,11 +10,23 @@ import java.time.LocalDateTime;
 public class OrderDTO
 {
     private Long id;
+
+    @NotBlank( message = "Argument 'description' must not be null" )
     private String description;
+
+    @NotNull( message = "Argument 'executedDate' must not be null" )
     private LocalDate executedDate;
+
+    @NotNull( message = "Argument 'status' must not be null" )
     private OrderStatus status;
+
+    @NotNull( message = "Argument 'customer' must not be null" )
     private CustomerDTO customer;
+
+    @NotNull( message = "Argument 'employee' must not be null" )
     private EmployeeDTO employee;
+
+    @NotNull( message = "Argument 'createdAt' must not be null" )
     private LocalDateTime createdAt;
 
     public Long getId()

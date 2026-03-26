@@ -2,6 +2,7 @@ package com.wsdev.simpleos.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,7 @@ public class EmployeeModel
     private String function;
 
     @OneToMany( mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true ) // Ira mapear por employee na classe Order e caso um registro seja apagadso ele ira deletar nas outras classes.
-    private List<OrderModel> orders;
+    private List<OrderModel> orders = new ArrayList<>();
 
     public EmployeeModel()
     {
