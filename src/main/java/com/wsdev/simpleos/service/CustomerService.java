@@ -86,7 +86,7 @@ public class CustomerService
             throw new EmailAlreadyExistsException( customerDTO.getEmail() );
         }
 
-        if( !customerModel.getCpf().equals( customerDTO.getCpf() ) )
+        if( !customerModel.getCpf().equalsIgnoreCase( customerDTO.getCpf() ) )
         {
             customerModel.setCpf( customerDTO.getCpf() );
         }

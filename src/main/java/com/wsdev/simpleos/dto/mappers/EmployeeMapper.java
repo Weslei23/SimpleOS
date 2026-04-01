@@ -13,6 +13,7 @@ public class EmployeeMapper
         employeeDTO.setName( employeeModel.getName() );
         employeeDTO.setPhone( employeeModel.getPhone() );
         employeeDTO.setFunction( employeeModel.getFunction() );
+        employeeDTO.setCpf( employeeModel.getCpf() );
 
         return employeeDTO;
     }
@@ -25,6 +26,7 @@ public class EmployeeMapper
         employeeModel.setName( employeeDTO.getName() );
         employeeModel.setPhone( employeeDTO.getPhone() );
         employeeModel.setFunction( employeeDTO.getFunction() );
+        employeeModel.setCpf( employeeDTO.getCpf() );
 
         return employeeModel;
     }

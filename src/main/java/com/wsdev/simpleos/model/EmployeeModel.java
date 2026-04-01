@@ -19,17 +19,20 @@ public class EmployeeModel
     @OneToMany( mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true ) // Ira mapear por employee na classe Order e caso um registro seja apagadso ele ira deletar nas outras classes.
     private List<OrderModel> orders = new ArrayList<>();
 
+    private String cpf;
+
     public EmployeeModel()
     {
 
     }
 
-    public EmployeeModel( Long id, String name, String phone, String function )
+    public EmployeeModel( Long id, String name, String phone, String function, String cpf )
     {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.function = function;
+        this.cpf = cpf;
     }
 
     public Long getId()
@@ -80,5 +83,15 @@ public class EmployeeModel
     public void setOrders( List<OrderModel> orders )
     {
         this.orders = orders;
+    }
+
+    public String getCpf()
+    {
+        return cpf;
+    }
+
+    public void setCpf( String cpf )
+    {
+        this.cpf = cpf;
     }
 }

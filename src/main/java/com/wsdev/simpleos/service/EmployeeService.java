@@ -2,6 +2,7 @@ package com.wsdev.simpleos.service;
 
 import com.wsdev.simpleos.dto.EmployeeDTO;
 import com.wsdev.simpleos.dto.mappers.EmployeeMapper;
+import com.wsdev.simpleos.exception.CpfAlreadyExistsException;
 import com.wsdev.simpleos.exception.RecordNotFoundException;
 import com.wsdev.simpleos.model.EmployeeModel;
 import com.wsdev.simpleos.repository.EmployeeRepository;
@@ -42,6 +43,11 @@ public class EmployeeService
 
     public void  addEmployee( EmployeeDTO employeeDTO )
     {
+        if ( employeeRepository.getEmployeeByCpf( employeeDTO.getCpf() ) != null )
+        {
+            throw new CpfAlreadyExistsException( employeeDTO.getCpf() );
+        }
+        
         employeeRepository.save( EmployeeMapper.dtoToEntity( employeeDTO ) );
     }
 
@@ -52,6 +58,15 @@ public class EmployeeService
         employeeModel.setName( employeeDTO.getName() );
         employeeModel.setPhone( employeeDTO.getPhone() );
         employeeModel.setFunction( employeeDTO.getFunction() );
+
+        if( !employeeModel.getCpf().equalsIgnoreCase( employeeDTO.getCpf() ) )
+        {
+            employeeModel.setCpf( employeeDTO.getCpf() );
+        }
+        else
+        {
+            throw new CpfAlreadyExistsException( employeeDTO.getCpf() );
+        }
 
         employeeRepository.save( employeeModel );
     }

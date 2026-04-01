@@ -17,6 +17,9 @@ public class EmployeeDTO
     @NotBlank( message = "Argument 'function' must not be null" )
     private String function;
 
+    @NotBlank( message = "Argument 'cpf' must not be null" )
+    private String cpf;
+
     public Long getId()
     {
         return id;
@@ -55,5 +58,15 @@ public class EmployeeDTO
     public void setFunction( String function )
     {
         this.function = function;
+    }
+
+    public String getCpf()
+    {
+        return cpf;
+    }
+
+    public void setCpf( String cpf )
+    {
+        this.cpf = cpf;
     }
 }
